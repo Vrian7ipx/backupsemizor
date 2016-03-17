@@ -15,3 +15,13 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+Route::group(array('before' => 'auth.basic'), function()
+{
+	Route::get('invoice','backupController@invoice');	
+	Route::get('invoice_item','backupController@invoiceItem');
+	Route::get('type_document','backupController@typeDocument');
+	Route::post('invoice','backupController@saveInvoice');
+	Route::post('type_document','backupController@saveTypeDocument');
+
+});
